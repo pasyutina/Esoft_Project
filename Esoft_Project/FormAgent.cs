@@ -47,9 +47,9 @@ namespace Esoft_Project
                 Program.wftDb.SaveChanges();
                 ShowAgent();
             }
-            catch (Exception ex) 
+            catch (Exception a)
             {
-                MessageBox.Show("" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                MessageBox.Show("" + a.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); 
             }
 
         }
@@ -84,19 +84,19 @@ namespace Esoft_Project
                     }
                     if (agentSet.FirstName == "" || agentSet.MiddleName == "" || agentSet.LastName == "")
                     {
-                        MessageBox.Show("Обязательное заполнение полей ФИО!");
+                        throw new Exception("Обязательное заполнение полей ФИО!");
                     }
                     if (agentSet.DealShare < 0 || agentSet.DealShare > 100)
                     {
-                        MessageBox.Show("Доля от комиссии должна находиться в диапазоне от 0 до 100!");
+                        throw new Exception("Доля от комиссии должна находиться в диапазоне от 0 до 100!");
                     }
                     Program.wftDb.SaveChanges();
                     ShowAgent();
                 }
             }
-            catch
+            catch (Exception a)
             {
-                MessageBox.Show("" + "Обязательное заполнение полей ФИО!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("" + a.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

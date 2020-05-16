@@ -165,10 +165,10 @@ namespace Esoft_Project
                 realEstate.Coordinate_latitude = -90;
                 textBoxCoordinate_latitude.Text = "-90";
             }
-            if (realEstate.Coordinate_latitude > 90)
+            if (realEstate.Coordinate_latitude > +90)
             {
-                realEstate.Coordinate_latitude = 90;
-                textBoxCoordinate_latitude.Text = "90";
+                realEstate.Coordinate_latitude = +90;
+                textBoxCoordinate_latitude.Text = "+90";
             }
             if (textBoxCoordinate_longitude.Text != "") 
             {
@@ -179,10 +179,10 @@ namespace Esoft_Project
                 realEstate.Coordinate_longitude = -180;
                 textBoxCoordinate_longitude.Text = "-180";
             }
-            if (realEstate.Coordinate_longitude > 180)
+            if (realEstate.Coordinate_longitude > +180)
             {
-                realEstate.Coordinate_longitude = 180;
-                textBoxCoordinate_longitude.Text = "180";
+                realEstate.Coordinate_longitude = +180;
+                textBoxCoordinate_longitude.Text = "+180";
             }
             if (textBoxTotalArea.Text != "")
             {
@@ -232,11 +232,46 @@ namespace Esoft_Project
                     realEstate.Address_House = textBoxAddress_House.Text;
                     realEstate.Address_Street = textBoxAddress_Street.Text;
                     realEstate.Address_Number = textBoxAddress_Number.Text;
-                    realEstate.Coordinate_latitude = Convert.ToDouble(textBoxCoordinate_latitude.Text);
-                    realEstate.Coordinate_longitude = Convert.ToDouble(textBoxCoordinate_longitude.Text);
-                    realEstate.TotalArea = Convert.ToDouble(textBoxTotalArea.Text);
-                    realEstate.Rooms = Convert.ToInt32(textBoxRooms.Text);
-                    realEstate.Floor = Convert.ToInt32(textBoxTotalFloors.Text);
+                    if (textBoxCoordinate_latitude.Text != "")
+                    {
+                        realEstate.Coordinate_latitude = Convert.ToDouble(textBoxCoordinate_latitude.Text);
+                    }
+                    if (realEstate.Coordinate_latitude < -90)
+                    {
+                        realEstate.Coordinate_latitude = -90;
+                        textBoxCoordinate_latitude.Text = "-90";
+                    }
+                    if (realEstate.Coordinate_latitude > 90)
+                    {
+                        realEstate.Coordinate_latitude = 90;
+                        textBoxCoordinate_latitude.Text = "90";
+                    }
+                    if (textBoxCoordinate_longitude.Text != "")
+                    {
+                        realEstate.Coordinate_longitude = Convert.ToDouble(textBoxCoordinate_longitude.Text);
+                    }
+                        if (realEstate.Coordinate_longitude < -180)
+                    {
+                        realEstate.Coordinate_longitude = -180;
+                        textBoxCoordinate_longitude.Text = "-180";
+                    }
+                    if (realEstate.Coordinate_longitude > 180)
+                    {
+                        realEstate.Coordinate_longitude = 180;
+                        textBoxCoordinate_longitude.Text = "180";
+                    }
+                    if (textBoxTotalArea.Text != "")
+                    {
+                        realEstate.TotalArea = Convert.ToDouble(textBoxTotalArea.Text);
+                    }
+                    if (textBoxRooms.Text != "")
+                    {
+                        realEstate.Rooms = Convert.ToInt32(textBoxRooms.Text);
+                    }
+                    if (textBoxFloor.Text != "")
+                    {
+                        realEstate.Floor = Convert.ToInt32(textBoxFloor.Text);
+                    }
 
                     Program.wftDb.SaveChanges();
                     ShowRealEstateSet();
@@ -252,10 +287,22 @@ namespace Esoft_Project
                     realEstate.Address_House = textBoxAddress_House.Text;
                     realEstate.Address_Street = textBoxAddress_Street.Text;
                     realEstate.Address_Number = textBoxAddress_Number.Text;
-                    realEstate.Coordinate_latitude = Convert.ToDouble(textBoxCoordinate_latitude.Text);
-                    realEstate.Coordinate_longitude = Convert.ToDouble(textBoxCoordinate_longitude.Text);
-                    realEstate.TotalArea = Convert.ToDouble(textBoxTotalArea.Text);
-                    realEstate.TotalFloors = Convert.ToInt32(textBoxTotalFloors.Text);
+                    if (textBoxCoordinate_latitude.Text != "")
+                    {
+                        realEstate.Coordinate_latitude = Convert.ToDouble(textBoxCoordinate_latitude.Text);
+                    }
+                    if (textBoxCoordinate_longitude.Text != "")
+                    {
+                        realEstate.Coordinate_longitude = Convert.ToDouble(textBoxCoordinate_longitude.Text);
+                    }
+                    if (textBoxTotalArea.Text != "")
+                    {
+                        realEstate.TotalArea = Convert.ToDouble(textBoxTotalArea.Text);
+                    }
+                    if (textBoxTotalFloors.Text != "")
+                    {
+                        realEstate.TotalFloors = Convert.ToInt32(textBoxTotalFloors.Text);
+                    }
                     Program.wftDb.SaveChanges();
                     ShowRealEstateSet();
                 }
@@ -270,9 +317,18 @@ namespace Esoft_Project
                     realEstate.Address_House = textBoxAddress_House.Text;
                     realEstate.Address_Street = textBoxAddress_Street.Text;
                     realEstate.Address_Number = textBoxAddress_Number.Text;
-                    realEstate.Coordinate_latitude = Convert.ToDouble(textBoxCoordinate_latitude.Text);
-                    realEstate.Coordinate_longitude = Convert.ToDouble(textBoxCoordinate_longitude.Text);
-                    realEstate.TotalArea = Convert.ToDouble(textBoxTotalArea.Text);
+                    if (textBoxCoordinate_latitude.Text != "")
+                    {
+                        realEstate.Coordinate_latitude = Convert.ToDouble(textBoxCoordinate_latitude.Text);
+                    }
+                    if (textBoxCoordinate_longitude.Text != "")
+                    {
+                        realEstate.Coordinate_longitude = Convert.ToDouble(textBoxCoordinate_longitude.Text);
+                    }
+                    if (textBoxTotalArea.Text != "")
+                    {
+                        realEstate.TotalArea = Convert.ToDouble(textBoxTotalArea.Text);
+                    }
                     Program.wftDb.SaveChanges();
                     ShowRealEstateSet();
                 }
@@ -437,6 +493,70 @@ namespace Esoft_Project
         private void labelTotalFloors_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormRealEstate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void textBoxAddress_House_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxAddress_House_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void textBoxAddress_Number_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxAddress_Number_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void textBoxFloor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void textBoxRooms_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void textBoxTotalFloors_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void textBoxTotalArea_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void textBoxCoordinate_latitude_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void textBoxCoordinate_longitude_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void textBoxAddress_House_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && number != 8 && number !=44 && number != 45 && number != 43)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
