@@ -108,6 +108,7 @@
             this.buttonOpenRealEstates.TabIndex = 5;
             this.buttonOpenRealEstates.Text = "Объекты недвижимости";
             this.buttonOpenRealEstates.UseVisualStyleBackColor = false;
+            this.buttonOpenRealEstates.Click += new System.EventHandler(this.buttonOpenRealEstates_Click);
             // 
             // buttonOpenAgents
             // 
@@ -121,6 +122,7 @@
             this.buttonOpenAgents.TabIndex = 6;
             this.buttonOpenAgents.Text = "Риелторы";
             this.buttonOpenAgents.UseVisualStyleBackColor = false;
+            this.buttonOpenAgents.Click += new System.EventHandler(this.buttonOpenAgents_Click);
             // 
             // Logo
             // 

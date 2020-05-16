@@ -40,15 +40,15 @@
             this.labelLastName = new System.Windows.Forms.Label();
             this.labelMiddleName = new System.Windows.Forms.Label();
             this.listViewClient = new System.Windows.Forms.ListView();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonEdit = new System.Windows.Forms.Button();
-            this.buttonDel = new System.Windows.Forms.Button();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Имя = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Фамилия = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Отчество = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Телефон = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Почта = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonDel = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -169,9 +169,40 @@
             this.listViewClient.View = System.Windows.Forms.View.Details;
             this.listViewClient.SelectedIndexChanged += new System.EventHandler(this.listViewClient_SelectedIndexChanged);
             // 
+            // ID
+            // 
+            this.ID.Text = "ID";
+            this.ID.Width = 29;
+            // 
+            // Имя
+            // 
+            this.Имя.Text = "Имя";
+            this.Имя.Width = 74;
+            // 
+            // Фамилия
+            // 
+            this.Фамилия.Text = "Фамилия";
+            this.Фамилия.Width = 101;
+            // 
+            // Отчество
+            // 
+            this.Отчество.Text = "Отчество";
+            this.Отчество.Width = 106;
+            // 
+            // Телефон
+            // 
+            this.Телефон.Text = "Телефон";
+            this.Телефон.Width = 112;
+            // 
+            // Почта
+            // 
+            this.Почта.Text = "Почта";
+            this.Почта.Width = 102;
+            // 
             // buttonAdd
             // 
             this.buttonAdd.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAdd.Font = new System.Drawing.Font("Roboto Light", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAdd.ForeColor = System.Drawing.SystemColors.Menu;
             this.buttonAdd.Location = new System.Drawing.Point(14, 331);
@@ -185,6 +216,7 @@
             // buttonEdit
             // 
             this.buttonEdit.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonEdit.Font = new System.Drawing.Font("Roboto Light", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonEdit.ForeColor = System.Drawing.SystemColors.Menu;
             this.buttonEdit.Location = new System.Drawing.Point(238, 331);
@@ -201,6 +233,7 @@
             this.buttonDel.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
             this.buttonDel.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.MenuHighlight;
             this.buttonDel.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.buttonDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDel.Font = new System.Drawing.Font("Roboto Light", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonDel.ForeColor = System.Drawing.SystemColors.Menu;
             this.buttonDel.Location = new System.Drawing.Point(463, 331);
@@ -210,36 +243,6 @@
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = false;
             this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
-            // 
-            // ID
-            // 
-            this.ID.Text = "ID";
-            this.ID.Width = 29;
-            // 
-            // Имя
-            // 
-            this.Имя.Text = "Имя";
-            this.Имя.Width = 74;
-            // 
-            // Фамилия
-            // 
-            this.Фамилия.Text = "Фамилия";
-            this.Фамилия.Width = 83;
-            // 
-            // Отчество
-            // 
-            this.Отчество.Text = "Отчество";
-            this.Отчество.Width = 82;
-            // 
-            // Телефон
-            // 
-            this.Телефон.Text = "Телефон";
-            this.Телефон.Width = 85;
-            // 
-            // Почта
-            // 
-            this.Почта.Text = "Почта";
-            this.Почта.Width = 169;
             // 
             // pictureBox1
             // 
