@@ -163,7 +163,7 @@
             // 
             this.TotalArea_Land.DisplayIndex = 5;
             this.TotalArea_Land.Text = "Площадь";
-            this.TotalArea_Land.Width = 89;
+            this.TotalArea_Land.Width = 92;
             // 
             // buttonDel
             // 
@@ -291,7 +291,7 @@
             // Rooms_Apartment
             // 
             this.Rooms_Apartment.Text = "Количество комнат";
-            this.Rooms_Apartment.Width = 110;
+            this.Rooms_Apartment.Width = 107;
             // 
             // Floor_Apartment
             // 
@@ -315,10 +315,10 @@
             this.listViewRealEstateSet_House.FullRowSelect = true;
             this.listViewRealEstateSet_House.GridLines = true;
             this.listViewRealEstateSet_House.HideSelection = false;
-            this.listViewRealEstateSet_House.Location = new System.Drawing.Point(15, 152);
+            this.listViewRealEstateSet_House.Location = new System.Drawing.Point(15, 154);
             this.listViewRealEstateSet_House.MultiSelect = false;
             this.listViewRealEstateSet_House.Name = "listViewRealEstateSet_House";
-            this.listViewRealEstateSet_House.Size = new System.Drawing.Size(575, 198);
+            this.listViewRealEstateSet_House.Size = new System.Drawing.Size(575, 196);
             this.listViewRealEstateSet_House.TabIndex = 8;
             this.listViewRealEstateSet_House.UseCompatibleStateImageBehavior = false;
             this.listViewRealEstateSet_House.View = System.Windows.Forms.View.Details;
@@ -604,7 +604,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormRealEstate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormRealEstate";
+            this.Text = "Объекты недвижимости";
             this.Load += new System.EventHandler(this.FormRealEstate_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormRealEstate_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
