@@ -92,6 +92,7 @@
             this.textBoxAddress_City.Name = "textBoxAddress_City";
             this.textBoxAddress_City.Size = new System.Drawing.Size(131, 24);
             this.textBoxAddress_City.TabIndex = 0;
+            this.textBoxAddress_City.TextChanged += new System.EventHandler(this.textBoxAddress_City_TextChanged);
             // 
             // labelAddress_City
             // 
@@ -102,6 +103,7 @@
             this.labelAddress_City.Size = new System.Drawing.Size(47, 17);
             this.labelAddress_City.TabIndex = 1;
             this.labelAddress_City.Text = "Город";
+            this.labelAddress_City.Click += new System.EventHandler(this.labelAddress_City_Click);
             // 
             // listViewRealEstateSet_Land
             // 
@@ -374,6 +376,7 @@
             this.label2.Size = new System.Drawing.Size(31, 17);
             this.label2.TabIndex = 9;
             this.label2.Text = "Тип";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // labelCoordinate_longitude
             // 
@@ -384,6 +387,7 @@
             this.labelCoordinate_longitude.Size = new System.Drawing.Size(63, 17);
             this.labelCoordinate_longitude.TabIndex = 10;
             this.labelCoordinate_longitude.Text = "Долгота";
+            this.labelCoordinate_longitude.Click += new System.EventHandler(this.labelCoordinate_longitude_Click);
             // 
             // labelRooms
             // 
@@ -395,6 +399,7 @@
             this.labelRooms.TabIndex = 11;
             this.labelRooms.Text = "Количество комнат";
             this.labelRooms.Visible = false;
+            this.labelRooms.Click += new System.EventHandler(this.labelRooms_Click);
             // 
             // labelTotalArea
             // 
@@ -405,6 +410,7 @@
             this.labelTotalArea.Size = new System.Drawing.Size(69, 17);
             this.labelTotalArea.TabIndex = 12;
             this.labelTotalArea.Text = "Площадь";
+            this.labelTotalArea.Click += new System.EventHandler(this.labelTotalArea_Click);
             // 
             // labelCoordinate_latitude
             // 
@@ -412,9 +418,10 @@
             this.labelCoordinate_latitude.Font = new System.Drawing.Font("Roboto Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelCoordinate_latitude.Location = new System.Drawing.Point(158, 55);
             this.labelCoordinate_latitude.Name = "labelCoordinate_latitude";
-            this.labelCoordinate_latitude.Size = new System.Drawing.Size(61, 17);
+            this.labelCoordinate_latitude.Size = new System.Drawing.Size(60, 17);
             this.labelCoordinate_latitude.TabIndex = 13;
-            this.labelCoordinate_latitude.Text = "Ширина";
+            this.labelCoordinate_latitude.Text = "Широта";
+            this.labelCoordinate_latitude.Click += new System.EventHandler(this.labelCoordinate_latitude_Click);
             // 
             // labelAddress_Number
             // 
@@ -425,6 +432,7 @@
             this.labelAddress_Number.Size = new System.Drawing.Size(118, 17);
             this.labelAddress_Number.TabIndex = 14;
             this.labelAddress_Number.Text = "Номер квартиры";
+            this.labelAddress_Number.Click += new System.EventHandler(this.labelAddress_Number_Click);
             // 
             // labelFloor
             // 
@@ -436,6 +444,7 @@
             this.labelFloor.TabIndex = 15;
             this.labelFloor.Text = "Этаж";
             this.labelFloor.Visible = false;
+            this.labelFloor.Click += new System.EventHandler(this.labelFloor_Click);
             // 
             // labelAddress_Street
             // 
@@ -457,6 +466,7 @@
             this.labelAddress_House.Size = new System.Drawing.Size(88, 17);
             this.labelAddress_House.TabIndex = 18;
             this.labelAddress_House.Text = "Номер дома";
+            this.labelAddress_House.Click += new System.EventHandler(this.labelAddress_House_Click);
             // 
             // textBoxAddress_Number
             // 
@@ -475,6 +485,7 @@
             this.textBoxAddress_Street.Name = "textBoxAddress_Street";
             this.textBoxAddress_Street.Size = new System.Drawing.Size(131, 24);
             this.textBoxAddress_Street.TabIndex = 20;
+            this.textBoxAddress_Street.TextChanged += new System.EventHandler(this.textBoxAddress_Street_TextChanged);
             // 
             // textBoxAddress_House
             // 
@@ -505,6 +516,7 @@
             this.textBoxFloor.Size = new System.Drawing.Size(131, 24);
             this.textBoxFloor.TabIndex = 23;
             this.textBoxFloor.Visible = false;
+            this.textBoxFloor.TextChanged += new System.EventHandler(this.textBoxFloor_TextChanged);
             this.textBoxFloor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddress_House_KeyPress_1);
             // 
             // textBoxCoordinate_latitude
@@ -514,6 +526,7 @@
             this.textBoxCoordinate_latitude.Name = "textBoxCoordinate_latitude";
             this.textBoxCoordinate_latitude.Size = new System.Drawing.Size(131, 24);
             this.textBoxCoordinate_latitude.TabIndex = 24;
+            this.textBoxCoordinate_latitude.TextChanged += new System.EventHandler(this.textBoxCoordinate_latitude_TextChanged);
             this.textBoxCoordinate_latitude.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddress_House_KeyPress_1);
             // 
             // textBoxCoordinate_longitude
@@ -523,6 +536,7 @@
             this.textBoxCoordinate_longitude.Name = "textBoxCoordinate_longitude";
             this.textBoxCoordinate_longitude.Size = new System.Drawing.Size(131, 24);
             this.textBoxCoordinate_longitude.TabIndex = 25;
+            this.textBoxCoordinate_longitude.TextChanged += new System.EventHandler(this.textBoxCoordinate_longitude_TextChanged);
             this.textBoxCoordinate_longitude.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddress_House_KeyPress_1);
             // 
             // textBoxTotalArea
@@ -532,6 +546,7 @@
             this.textBoxTotalArea.Name = "textBoxTotalArea";
             this.textBoxTotalArea.Size = new System.Drawing.Size(132, 24);
             this.textBoxTotalArea.TabIndex = 26;
+            this.textBoxTotalArea.TextChanged += new System.EventHandler(this.textBoxTotalArea_TextChanged);
             this.textBoxTotalArea.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddress_House_KeyPress_1);
             // 
             // textBoxRooms
@@ -542,6 +557,7 @@
             this.textBoxRooms.Size = new System.Drawing.Size(131, 24);
             this.textBoxRooms.TabIndex = 27;
             this.textBoxRooms.Visible = false;
+            this.textBoxRooms.TextChanged += new System.EventHandler(this.textBoxRooms_TextChanged);
             this.textBoxRooms.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddress_House_KeyPress_1);
             // 
             // labelTotalFloors
@@ -565,6 +581,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // FormRealEstate
             // 

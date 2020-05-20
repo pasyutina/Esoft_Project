@@ -558,5 +558,90 @@ namespace Esoft_Project
                 e.Handled = true;
             }
         }
+
+        private void textBoxRooms_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxTotalArea_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxCoordinate_longitude_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxCoordinate_latitude_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxFloor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxAddress_Street_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelAddress_House_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelFloor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelAddress_Number_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelCoordinate_latitude_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelTotalArea_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelRooms_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelCoordinate_longitude_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelAddress_City_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxAddress_City_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
