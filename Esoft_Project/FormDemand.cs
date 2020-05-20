@@ -18,7 +18,7 @@ namespace Esoft_Project
             comboBoxType.SelectedIndex = 0;
             ShowAgents();
             ShowClients();
-            ShowType();
+            ShowDemandSet();
         }
 
         void ShowAgents()
@@ -41,15 +41,7 @@ namespace Esoft_Project
             }
         }
 
-        void ShowType()
-        {
-            comboBoxType.Items.Clear();
-            foreach (RealEstateSet realEstateSet in Program.wftDb.RealEstateSet)
-            {
-                string[] item = { realEstateSet.Id.ToString() + ".", realEstateSet.Address_City + ",", realEstateSet.Address_Street + ",", "д." + realEstateSet.Address_House + ",", "кв." + realEstateSet.Address_Number };
-                comboBoxType.Items.Add(string.Join(" ", item));
-            }
-        }
+        
 
         void ShowDemandSet()
         {
@@ -195,8 +187,9 @@ namespace Esoft_Project
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-           
-                
+            try 
+            { 
+
             if (comboBoxType.SelectedIndex == 0)
             {
 
@@ -207,83 +200,78 @@ namespace Esoft_Project
                     demand.IdAgent = Convert.ToInt32(comboBoxAgents.SelectedItem.ToString().Split('.')[0]);
                     demand.Type = 0;
 
-                    if (textBoxMinPrice.Text != "")
-                    { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
-                    if (textBoxMaxPrice.Text != "")
-                    { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
-                    if (textBoxMinArea.Text != "")
-                    { demand.MinArea = Convert.ToInt32(textBoxMinArea.Text); }
-                    if (textBoxMaxArea.Text != "")
-                    { demand.MaxArea = Convert.ToInt32(textBoxMaxArea.Text); }
-                    if (textBoxMinRooms.Text != "")
-                    { demand.MinRooms = Convert.ToInt32(textBoxMinRooms.Text); }
-                    if (textBoxMaxRooms.Text != "")
-                    { demand.MaxRooms = Convert.ToInt32(textBoxMaxRooms.Text); }
-                    if (textBoxMinFloor.Text != "")
-                    { demand.MinFloor = Convert.ToInt32(textBoxMinFloor.Text); }
-                    if (textBoxMaxFloor.Text != "")
-                    { demand.MaxFloor = Convert.ToInt32(textBoxMaxFloor.Text); }
-
-                    Program.wftDb.DemandSet.Add(demand);
-                    Program.wftDb.SaveChanges();
-                    ShowDemandSet();
+                        if (textBoxMinPrice.Text != "") { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
+                        if (textBoxMaxPrice.Text != "") { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
+                        if (demand.MaxPrice < demand.MinPrice) { throw new ApplicationException("цена"); }
+                        if (textBoxMinArea.Text != "") { demand.MinArea = Convert.ToInt32(textBoxMinArea.Text); }
+                        if (textBoxMaxArea.Text != "") { demand.MaxArea = Convert.ToInt32(textBoxMaxArea.Text); }
+                        if (demand.MaxArea < demand.MinArea) { throw new ApplicationException("площадь"); }
+                        if (textBoxMinFloor.Text != "") { demand.MinFloor = Convert.ToInt32(textBoxMinFloor.Text); }
+                        if (textBoxMaxFloor.Text != "") { demand.MaxFloor = Convert.ToInt32(textBoxMaxFloor.Text); }
+                        if (demand.MaxFloor < demand.MinFloor) { throw new Exception("этаж"); }
+                        if (textBoxMinRooms.Text != "") { demand.MinRooms = Convert.ToInt32(textBoxMinRooms.Text); }
+                        if (textBoxMaxRooms.Text != "") { demand.MaxRooms = Convert.ToInt32(textBoxMaxRooms.Text); }
+                        if (demand.MaxRooms < demand.MinRooms) { throw new AggregateException("количество комнат"); }
+                        Program.wftDb.DemandSet.Add(demand);
+                        Program.wftDb.SaveChanges();
+                        ShowDemandSet();
                 }
 
                 else { MessageBox.Show("Данные не выбраны", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information); }
 
             }
-            if (comboBoxType.SelectedIndex == 1)
-            {
-                if (comboBoxAgents.SelectedItem != null && comboBoxClients.SelectedItem != null && comboBoxType.SelectedItem != null)
+                if (comboBoxType.SelectedIndex == 1)
                 {
-                    DemandSet demand = new DemandSet();
-                    demand.IdClient = Convert.ToInt32(comboBoxClients.SelectedItem.ToString().Split('.')[0]);
-                    demand.IdAgent = Convert.ToInt32(comboBoxAgents.SelectedItem.ToString().Split('.')[0]);
-                    demand.Type = 1;
-                    if (textBoxMinPrice.Text != "")
-                    { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
-                    if (textBoxMaxPrice.Text != "")
-                    { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
-                    if (textBoxMinArea.Text != "")
-                    { demand.MinArea = Convert.ToInt64(textBoxMinArea.Text); }
-                    if (textBoxMaxArea.Text != "")
-                    { demand.MaxArea = Convert.ToInt64(textBoxMaxArea.Text); }
-                    if (textBoxMinFloors.Text != "")
-                    { demand.MinFloors = Convert.ToInt32(textBoxMinFloors.Text); }
-                    if (textBoxMaxFloors.Text != "")
-                    { demand.MaxFloors = Convert.ToInt32(textBoxMaxFloors.Text); }
-
-                    Program.wftDb.DemandSet.Add(demand);
-                    Program.wftDb.SaveChanges();
-                    ShowDemandSet();
+                    if (comboBoxAgents.SelectedItem != null && comboBoxClients.SelectedItem != null && comboBoxType.SelectedItem != null)
+                    {
+                        DemandSet demand = new DemandSet();
+                        demand.IdClient = Convert.ToInt32(comboBoxClients.SelectedItem.ToString().Split('.')[0]);
+                        demand.IdAgent = Convert.ToInt32(comboBoxAgents.SelectedItem.ToString().Split('.')[0]);
+                        demand.Type = 1;
+                        if (textBoxMinPrice.Text != "") { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
+                        if (textBoxMaxPrice.Text != "") { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
+                        if (demand.MaxPrice < demand.MinPrice) { throw new ApplicationException("цена"); }
+                        if (textBoxMinArea.Text != "") { demand.MinArea = Convert.ToInt32(textBoxMinArea.Text); }
+                        if (textBoxMaxArea.Text != "") { demand.MaxArea = Convert.ToInt32(textBoxMaxArea.Text); }
+                        if (demand.MaxArea < demand.MinArea) { throw new ApplicationException("площадь"); }
+                        if (textBoxMinFloors.Text != "") { demand.MinFloors = Convert.ToInt32(textBoxMinFloors.Text); }
+                        if (textBoxMaxFloors.Text != "") { demand.MaxFloors = Convert.ToInt32(textBoxMaxFloors.Text); }
+                        if (demand.MaxArea < demand.MinArea) { throw new ApplicationException("этажность"); }
+                        Program.wftDb.DemandSet.Add(demand);
+                        Program.wftDb.SaveChanges();
+                        ShowDemandSet();
+                    }
+                    else { MessageBox.Show("Данные не выбраны", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
-                else { MessageBox.Show("Данные не выбраны", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-            }
 
-            else
-            {
-                if (comboBoxAgents.SelectedItem != null && comboBoxClients.SelectedItem != null && comboBoxType.SelectedItem != null)
+                else
                 {
-                    DemandSet demand = new DemandSet();
-                    demand.IdClient = Convert.ToInt32(comboBoxClients.SelectedItem.ToString().Split('.')[0]);
-                    demand.IdAgent = Convert.ToInt32(comboBoxAgents.SelectedItem.ToString().Split('.')[0]);
-                    demand.Type = 2;
+                    if (comboBoxAgents.SelectedItem != null && comboBoxClients.SelectedItem != null && comboBoxType.SelectedItem != null)
+                    {
+                        DemandSet demand = new DemandSet();
+                        demand.IdClient = Convert.ToInt32(comboBoxClients.SelectedItem.ToString().Split('.')[0]);
+                        demand.IdAgent = Convert.ToInt32(comboBoxAgents.SelectedItem.ToString().Split('.')[0]);
+                        demand.Type = 2;
 
-                    if (textBoxMinPrice.Text != "")
-                    { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
-                    if (textBoxMaxPrice.Text != "")
-                    { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
-                    if (textBoxMinArea.Text != "")
-                    { demand.MinArea = Convert.ToInt64(textBoxMinArea.Text); }
-                    if (textBoxMaxArea.Text != "")
-                    { demand.MaxArea = Convert.ToInt64(textBoxMaxArea.Text); }
-                    Program.wftDb.DemandSet.Add(demand);
-                    Program.wftDb.SaveChanges();
-                    ShowDemandSet();
+                        if (textBoxMinPrice.Text != "") { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
+                        if (textBoxMaxPrice.Text != "") { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
+                        if (demand.MaxPrice < demand.MinPrice) { throw new ApplicationException("цена"); }
+                        if (textBoxMinArea.Text != "") { demand.MinArea = Convert.ToInt32(textBoxMinArea.Text); }
+                        if (textBoxMaxArea.Text != "") { demand.MaxArea = Convert.ToInt32(textBoxMaxArea.Text); }
+                        if (demand.MaxArea < demand.MinArea) { throw new ApplicationException("площадь"); }
+                        Program.wftDb.DemandSet.Add(demand);
+                        Program.wftDb.SaveChanges();
+                        ShowDemandSet();
+                    }
+                    else { MessageBox.Show("Данные не выбраны", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+
                 }
-                else { MessageBox.Show("Данные не выбраны", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information); }
 
             }
+            catch (ApplicationException ex) { MessageBox.Show("Максимальная " + ex.Message + " не может быть меньше минимальной!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch (AggregateException ex) { MessageBox.Show("Максимальное " + ex.Message + " не может быть меньше минимального!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch (Exception ex) { MessageBox.Show("Максимальный " + ex.Message + " не может быть меньше минимального!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
         }
 
         private void listViewDemand_Appartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -319,85 +307,99 @@ namespace Esoft_Project
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            if (comboBoxType.SelectedIndex == 0)
+            try
             {
-                if (listViewDemand_Appartment.SelectedItems.Count == 1)
+                if (comboBoxType.SelectedIndex == 0)
                 {
-                    DemandSet demand = listViewDemand_Appartment.SelectedItems[0].Tag as DemandSet;
+                    if (listViewDemand_Appartment.SelectedItems.Count == 1)
+                    {
+                        DemandSet demand = listViewDemand_Appartment.SelectedItems[0].Tag as DemandSet;
 
-                    demand.IdClient = Convert.ToInt32(comboBoxClients.SelectedItem.ToString().Split('.')[0]);
-                    demand.IdAgent = Convert.ToInt32(comboBoxAgents.SelectedItem.ToString().Split('.')[0]);
-                    
-                    if (textBoxMinPrice.Text != "") { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
-                    else demand.MinPrice = null;
-                    if (textBoxMaxPrice.Text != "") { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
-                    else demand.MaxPrice = null;
-                    if (textBoxMinArea.Text != "") { demand.MinArea = Convert.ToInt32(textBoxMinArea.Text); }
-                    else demand.MinArea = null;
-                    if (textBoxMaxArea.Text != "") { demand.MaxArea = Convert.ToInt32(textBoxMaxArea.Text); }
-                    else demand.MaxArea = null;
-                    if (textBoxMinRooms.Text != "") { demand.MinRooms = Convert.ToInt32(textBoxMinRooms.Text); }
-                    else demand.MinRooms = null;
-                    if (textBoxMaxRooms.Text != "") { demand.MaxRooms = Convert.ToInt32(textBoxMaxRooms.Text); }
-                    else demand.MaxRooms = null;
-                    if (textBoxMinFloor.Text != "") { demand.MinFloor = Convert.ToInt32(textBoxMinFloor.Text); }
-                    else demand.MinFloor = null;
-                    if (textBoxMaxFloor.Text != "") { demand.MaxFloor = Convert.ToInt32(textBoxMaxFloor.Text); }
-                    else demand.MaxFloor = null;
-                    Program.wftDb.SaveChanges();
-                    ShowDemandSet();
+                        demand.IdClient = Convert.ToInt32(comboBoxClients.SelectedItem.ToString().Split('.')[0]);
+                        demand.IdAgent = Convert.ToInt32(comboBoxAgents.SelectedItem.ToString().Split('.')[0]);
+
+                        if (textBoxMinPrice.Text != "") { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
+                        else { demand.MinPrice = null; }
+                        if (textBoxMaxPrice.Text != "") { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
+                        else { demand.MaxPrice = null; }
+                        if (demand.MaxPrice < demand.MinPrice) { throw new ApplicationException("цена"); }
+                        if (textBoxMinArea.Text != "") { demand.MinArea = Convert.ToInt32(textBoxMinArea.Text); }
+                        else { demand.MinArea = null; }
+                        if (textBoxMaxArea.Text != "") { demand.MaxArea = Convert.ToInt32(textBoxMaxArea.Text); }
+                        else { demand.MaxArea = null; }
+                        if (demand.MaxArea < demand.MinArea) { throw new ApplicationException("площадь"); }
+                        if (textBoxMinFloor.Text != "") { demand.MinFloor = Convert.ToInt32(textBoxMinFloor.Text); }
+                        else { demand.MinFloor = null; }
+                        if (textBoxMaxFloor.Text != "") { demand.MaxFloor = Convert.ToInt32(textBoxMaxFloor.Text); }
+                        else { demand.MaxFloor = null; }
+                        if (demand.MaxFloor < demand.MinFloor) { throw new Exception("этаж"); }
+                        if (textBoxMinRooms.Text != "") { demand.MinRooms = Convert.ToInt32(textBoxMinRooms.Text); }
+                        else { demand.MinRooms = null; }
+                        if (textBoxMaxRooms.Text != "") { demand.MaxRooms = Convert.ToInt32(textBoxMaxRooms.Text); }
+                        else { demand.MaxRooms = null; }
+                        if (demand.MaxRooms < demand.MinRooms) { throw new AggregateException("количество комнат"); }
+                        Program.wftDb.SaveChanges();
+                        ShowDemandSet();
+                    }
+                }
+                else if (comboBoxType.SelectedIndex == 1)
+                {
+                    if (listViewDemand_House.SelectedItems.Count == 1)
+                    {
+                        DemandSet demand = listViewDemand_House.SelectedItems[0].Tag as DemandSet;
+
+                        demand.IdClient = Convert.ToInt32(comboBoxClients.SelectedItem.ToString().Split('.')[0]);
+                        demand.IdAgent = Convert.ToInt32(comboBoxAgents.SelectedItem.ToString().Split('.')[0]);
+                        demand.Type = 1;
+
+                        if (textBoxMinPrice.Text != "") { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
+                        else { demand.MinPrice = null; }
+                        if (textBoxMaxPrice.Text != "") { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
+                        else { demand.MaxPrice = null; }
+                        if (demand.MaxPrice < demand.MinPrice) { throw new ApplicationException("цена"); }
+                        if (textBoxMinArea.Text != "") { demand.MinArea = Convert.ToInt32(textBoxMinArea.Text); }
+                        else { demand.MinArea = null; }
+                        if (textBoxMaxArea.Text != "") { demand.MaxArea = Convert.ToInt32(textBoxMaxArea.Text); }
+                        else { demand.MaxArea = null; }
+                        if (demand.MaxArea < demand.MinArea) { throw new ApplicationException("площадь"); }
+                        if (textBoxMinFloors.Text != "") { demand.MinFloors = Convert.ToInt32(textBoxMinFloors.Text); }
+                        else { demand.MinFloors = null; }
+                        if (textBoxMaxFloors.Text != "") { demand.MaxFloors = Convert.ToInt32(textBoxMaxFloors.Text); }
+                        else { demand.MaxFloors = null; }
+                        if (demand.MaxArea < demand.MinArea) { throw new ApplicationException("этажность"); }
+                        Program.wftDb.SaveChanges();
+                        ShowDemandSet();
+                    }
+                }
+                else
+                {
+                    if (listViewDemand_Land.SelectedItems.Count == 1)
+                    {
+                        DemandSet demand = listViewDemand_Land.SelectedItems[0].Tag as DemandSet;
+
+                        demand.IdClient = Convert.ToInt32(comboBoxClients.SelectedItem.ToString().Split('.')[0]);
+                        demand.IdAgent = Convert.ToInt32(comboBoxAgents.SelectedItem.ToString().Split('.')[0]);
+                        demand.Type = 2;
+
+                        if (textBoxMinPrice.Text != "") { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
+                        else { demand.MinPrice = null; }
+                        if (textBoxMaxPrice.Text != "") { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
+                        else { demand.MaxPrice = null; }
+                        if (demand.MaxPrice < demand.MinPrice) { throw new ApplicationException("цена"); }
+                        if (textBoxMinArea.Text != "") { demand.MinArea = Convert.ToInt32(textBoxMinArea.Text); }
+                        else { demand.MinArea = null; }
+                        if (textBoxMaxArea.Text != "") { demand.MaxArea = Convert.ToInt32(textBoxMaxArea.Text); }
+                        else { demand.MaxArea = null; }
+                        if (demand.MaxArea < demand.MinArea) { throw new ApplicationException("площадь"); }
+                        Program.wftDb.SaveChanges();
+                        ShowDemandSet();
+                    }
                 }
             }
-            else if (comboBoxType.SelectedIndex == 1)
-            {
-                if (listViewDemand_House.SelectedItems.Count == 1)
-                {
-                    DemandSet demand = listViewDemand_House.SelectedItems[0].Tag as DemandSet;
+            catch (ApplicationException ex) { MessageBox.Show("Максимальная " + ex.Message + " не может быть меньше минимальной", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (AggregateException ex) { MessageBox.Show("Максимальное " + ex.Message + " не может быть меньше минимального", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (Exception ex) { MessageBox.Show("Максимальный " + ex.Message + " не может быть меньше минимального", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
-                    demand.IdClient = Convert.ToInt32(comboBoxClients.SelectedItem.ToString().Split('.')[0]);
-                    demand.IdAgent = Convert.ToInt32(comboBoxAgents.SelectedItem.ToString().Split('.')[0]);
-                    demand.Type = 1;
-
-                    if (textBoxMinPrice.Text != "") { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
-                    else demand.MinPrice = null;
-                    if (textBoxMaxPrice.Text != "") { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
-                    else demand.MaxPrice = null;
-                    if (textBoxMinArea.Text != "") { demand.MinArea = Convert.ToInt32(textBoxMinArea.Text); }
-                    else demand.MinArea = null;
-                    if (textBoxMaxArea.Text != "") { demand.MaxArea = Convert.ToInt32(textBoxMaxArea.Text); }
-                    else demand.MaxArea = null;
-                    if (textBoxMinFloors.Text != "") { demand.MinFloors = Convert.ToInt32(textBoxMinFloors.Text); }
-                    else demand.MinFloors = null;
-                    if (textBoxMaxFloors.Text != "") { demand.MaxFloors = Convert.ToInt32(textBoxMaxFloors.Text); }
-                    else demand.MaxFloors = null;
-
-                    Program.wftDb.SaveChanges();
-                    ShowDemandSet();
-                }
-            }
-            else
-            {
-                if (listViewDemand_Land.SelectedItems.Count == 1)
-                {
-                    DemandSet demand = listViewDemand_Land.SelectedItems[0].Tag as DemandSet;
-
-                    demand.IdClient = Convert.ToInt32(comboBoxClients.SelectedItem.ToString().Split('.')[0]);
-                    demand.IdAgent = Convert.ToInt32(comboBoxAgents.SelectedItem.ToString().Split('.')[0]);
-                    demand.Type = 2;
-
-                    if (textBoxMinPrice.Text != "") { demand.MinPrice = Convert.ToInt64(textBoxMinPrice.Text); }
-                    else demand.MinPrice = null;
-                    if (textBoxMaxPrice.Text != "") { demand.MaxPrice = Convert.ToInt64(textBoxMaxPrice.Text); }
-                    else demand.MaxPrice = null;
-                    if (textBoxMinArea.Text != "") { demand.MinArea = Convert.ToInt32(textBoxMinArea.Text); }
-                    else demand.MinArea = null;
-                    if (textBoxMaxArea.Text != "") { demand.MaxArea = Convert.ToInt32(textBoxMaxArea.Text); }
-                    else demand.MaxArea = null;
-
-                    Program.wftDb.SaveChanges();
-                    ShowDemandSet();
-                }
-            }
         }
 
         private void listViewDemand_House_SelectedIndexChanged(object sender, EventArgs e)

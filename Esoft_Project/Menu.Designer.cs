@@ -147,6 +147,7 @@
             this.labelHello.Size = new System.Drawing.Size(71, 20);
             this.labelHello.TabIndex = 7;
             this.labelHello.Text = "Привет!";
+            this.labelHello.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelHello.Click += new System.EventHandler(this.labelHello_Click);
             // 
             // Menu
